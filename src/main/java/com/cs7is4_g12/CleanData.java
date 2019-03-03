@@ -12,14 +12,14 @@ import java.util.Map;
 
 public class CleanData {
 
-
+	final static String projectPath = "C:\\Users\\Swastik\\Desktop\\MastersDegree_CS\\Semester_2\\TextAnalytics\\Project\\";
+	
     public static void main (String[] args) throws java.lang.Exception
     {
         // your code goes here
     	CleanData objCleanData = new CleanData();
     	objCleanData.clean(); 
     	
-    	String projectPath = "C:\\Users\\Swastik\\Desktop\\MastersDegree_CS\\Semester_2\\TextAnalytics\\Project\\";
     	String base_paths[] = 
     		{
 				projectPath + "US TextBooks\\6\\Geography\\",
@@ -107,15 +107,15 @@ public class CleanData {
 //    	String base_path = "C:\\Users\\Swastik\\Desktop\\MastersDegree_CS\\Semester_2\\TextAnalytics\\Project\\IndianTextBooks\\6\\Geography\\";
     	String base_paths[] = 
     		{
-"C:\\Users\\Swastik\\Desktop\\MastersDegree_CS\\Semester_2\\TextAnalytics\\Project\\US TextBooks\\6\\Geography\\",
-"C:\\Users\\Swastik\\Desktop\\MastersDegree_CS\\Semester_2\\TextAnalytics\\Project\\US TextBooks\\10\\Civics\\",
-"C:\\Users\\Swastik\\Desktop\\MastersDegree_CS\\Semester_2\\TextAnalytics\\Project\\US TextBooks\\10\\Economics\\",
-"C:\\Users\\Swastik\\Desktop\\MastersDegree_CS\\Semester_2\\TextAnalytics\\Project\\US TextBooks\\10\\US History\\",
-"C:\\Users\\Swastik\\Desktop\\MastersDegree_CS\\Semester_2\\TextAnalytics\\Project\\US TextBooks\\10\\World History\\",
-"C:\\Users\\Swastik\\Desktop\\MastersDegree_CS\\Semester_2\\TextAnalytics\\Project\\IndianTextBooks\\6\\Geography\\",
-"C:\\Users\\Swastik\\Desktop\\MastersDegree_CS\\Semester_2\\TextAnalytics\\Project\\IndianTextBooks\\10\\Civics\\",
-"C:\\Users\\Swastik\\Desktop\\MastersDegree_CS\\Semester_2\\TextAnalytics\\Project\\IndianTextBooks\\10\\Economics\\",
-"C:\\Users\\Swastik\\Desktop\\MastersDegree_CS\\Semester_2\\TextAnalytics\\Project\\IndianTextBooks\\10\\History\\",
+    			projectPath + "US TextBooks\\6\\Geography\\",
+    			projectPath + "US TextBooks\\10\\Civics\\",
+    			projectPath + "US TextBooks\\10\\Economics\\",
+    			projectPath + "US TextBooks\\10\\US History\\",
+    			projectPath + "US TextBooks\\10\\World History\\",
+    			projectPath + "IndianTextBooks\\6\\Geography\\",
+    			projectPath + "IndianTextBooks\\10\\Civics\\",
+    			projectPath + "IndianTextBooks\\10\\Economics\\",
+    			projectPath + "IndianTextBooks\\10\\History\\",
     		};
         String filePaths[] =
                 {
