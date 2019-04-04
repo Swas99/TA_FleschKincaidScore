@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Spyder Editor
+NLP Analyser
 
-This is a temporary script file.
 """
 from stanfordcorenlp import StanfordCoreNLP
 import os
