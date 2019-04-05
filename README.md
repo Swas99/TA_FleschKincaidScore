@@ -1,3 +1,34 @@
+Readme --
+
+Instructions to execute the code on the branch.
+
+To run this project first download Stanford CoreNLP from
+https://stanfordnlp.github.io/CoreNLP/download.html
+
+Start the NLP Server:
+cd path/stanford-corenlp-full-2018-10-05
+java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -annotators "tokenize,ssplit,pos,lemma,parse,sentiment" -port 9000 -timeout 30000
+
+Python
+Install Anaconda
+https://www.anaconda.com/distribution/
+
+
+Anaconda Prompt
+
+Create a Virtual ENV for Python 3
+conda create -n yourenvname python=x.x anaconda
+
+Activate
+source activate yourenvname
+Ref: https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/20/conda/
+
+Install SNLP Library
+pip install stanfordcorenlp
+
+N.B. The path "os.walk( "C:/Users/souro/OneDrive/Desktop/workstation/Text Analytics/CleanTextFiles")" mentioned here is the absolute directory structure for the clean text files to be processed. You can put them in any folder structure inside this path.
+
+*********************
 http://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests
 
 Results
