@@ -28,18 +28,34 @@ def init():
 
 
 def annotateText(text):
-    annotatedText = json.loads(nlp.annotate(text, properties=props))#, #properties=props)
+    annotatedText = json.loads(nlp.annotate(text, properties=props))
     return annotatedText
 
 
 def processAnnotatedText(annotatedText, ttr=0.72):
     global sentences
     nouns = []
-    #adjectives = []
-    #verbs = []
+    adjectives = []
+    verbs = []
+    adjectives = []
+    adverbs = []
+    foreignWords = []
+    
     words = []
     token = []
     types = set()
+    
+    nounTypes = set()
+    uniqueNounCount = 0
+    verbTypes = set()
+    uniqueVerbCount = 0
+    adjectiveTypes = set()
+    uniqueAdjectiveCount = 0
+    adverbTypes = set()
+    uniqueAdverbCount = 0
+    
+    
+    
     currentTtr = 1.0
     tokenCount = 0
     typeCount = 0
@@ -63,21 +79,44 @@ def processAnnotatedText(annotatedText, ttr=0.72):
             # This is for Content Diversity
             words.append(token['word'].lower().strip())
             # Noun Extraction
-            if 'NN' in token['pos']:
+            if token['pos'] in ['NN','NNS','NNP','NNPS']:
                 nouns.append(token['word'])
-        # Verbs Extraction
-    # if '' in token['pos']:
-    #    verbs.append(token['word'])
-    # Adjectives Extraction
-    # if '' in token['pos']:
-    #    adjectives.append(token['word'])
+            # Verbs Extraction
+            if token['pos'] in ['VB','VBD','VBG','VBN','VBP','VBZ']:
+                verbs.append(token['word'])
+            # Adjective Extraction
+            if token['pos'] in ['JJ','JJR','JJS']:
+                adjectives.append(token['word'])
+            # Adverb Extraction
+            if token['pos'] in ['RB','RBR','RBS']:
+                adverbs.append(token['word'])
+            # Foreign Words Extraction
+            if token['pos'] in ['FW']:
+                foreignWords.append(token['word'])
+    
 
     excess = 1.0 - currentTtr
     excessVal = 1.0 - ttr
 
     factors += excess / excessVal
+    for noun in nouns:
+        if noun not in nounTypes:
+            uniqueNounCount += 1
+            nounTypes.add(noun)
+    for verb in verbs:
+        if verb not in verbTypes:
+            uniqueVerbCount += 1
+            verbTypes.add(verb)
+    for adverb in adverbs:
+        if adverb not in adverbTypes:
+            uniqueAdverbCount += 1
+            adverbTypes.add(adverb)
+    for adjective in adjectives:
+        if adjective not in adjectiveTypes:
+            uniqueAdjectiveCount += 1
+            adjectiveTypes.add(adjective)
    # return factors, words, nouns, verbs, adjectives
-    return factors, words, nouns
+    return factors, words, nouns, verbs, adjectives, adverbs, foreignWords,uniqueNounCount,uniqueVerbCount,uniqueAdverbCount,uniqueAdjectiveCount
 
 def calculateMltd(factors, totalWordsCount):
     return totalWordsCount / factors
@@ -95,7 +134,7 @@ def computeMetrics():
     init()
 
 init()
-for root, dirs, files in os.walk("C:/Users/souro/OneDrive/Desktop/workstation/Text Analytics/CleanTextFiles"):
+for root, dirs, files in os.walk( "C:/Users/souro/OneDrive/Desktop/workstation/Text Analytics/CleanTextFiles"):
     for file in files:
         if file.endswith('.txt'):
             #print(os.path)
@@ -109,9 +148,11 @@ for file in filesList:
     #print(text)
     annotatedText = annotateText(text)
     #factors, words, nouns, verbs, adjectives = processAnnotatedText(annotatedText)
-    factors, words, nouns = processAnnotatedText(annotatedText)
+    factors, words, nouns, verbs, adjectives, adverbs, foreignWords, uniqueNounCount, uniqueVerbCount, uniqueAdverbCount,uniqueAdjectiveCount = processAnnotatedText(annotatedText)
     
     mltdIndex = calculateMltd(factors, len(words))
+    uniqueContentWords = uniqueNounCount+uniqueVerbCount+uniqueAdverbCount+uniqueAdjectiveCount
     print('MLTD = {}'.format(mltdIndex))
-    print('Factors = {}, word count = {}, noun count = {}'.format(factors, len(words), len(nouns)))
+    print('Factors = {}, word count = {}, noun count = {}, verb count = {}, adjective count = {}, adverb count = {}, foreign word count = {}, content diversity = {}'.format(factors, len(words), len(nouns), len(verbs), len(adjectives),len(adverbs), len(foreignWords),(uniqueContentWords/(len(nouns)+len(verbs)+len(adjectives)+len(adverbs)))))
+    print('Noun-Verb Ratio = {}'.format(uniqueNounCount/uniqueVerbCount))
     print(' ')
