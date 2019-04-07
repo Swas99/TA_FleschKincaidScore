@@ -104,20 +104,30 @@ final static String paths_2[] =
     }
     
     public void solve() throws Exception {
-    	
-    	writeHeader();
+
+	    StringBuilder out = new StringBuilder();
+    	writeHeader(out);
         for (String filePath : paths_1)
         {
-        	analyzeFileAndWriteResults(filePath);
+        	analyzeFileAndWriteResults(filePath, out);
         }
         for (String filePath : paths_2)
         {
-        	analyzeFileAndWriteResults(filePath);
+        	analyzeFileAndWriteResults(filePath, out);
         }
+        
+
+	    String resultPath = "C:\\Users\\Swastik\\Desktop\\MastersDegree_CS\\Semester_2\\TextAnalytics\\Project\\_results\\";
+	    BufferedWriter writer = new BufferedWriter(
+	  		  new FileWriter(resultPath +  "results.csv"));
+	    writer.append(out);
+	    writer.close();
+		
+	    
         System.out.println("________DONE________");
     }
 
-    private void analyzeFileAndWriteResults(String filePath) throws Exception {
+    private void analyzeFileAndWriteResults(String filePath, StringBuilder out) throws Exception {
 
 	    FleschKincaid objFleschKincaid = new FleschKincaid();
 	    FleschKincaid objFleschKincaidWithStanfordNLPLexer = new FleschKincaid();
@@ -127,7 +137,6 @@ final static String paths_2[] =
 		String country = getCountry(filePath);
 		String grade = getGrade(filePath);
 		String subject = getSubject(filePath);
-		StringBuilder out = new StringBuilder();
 		
 	    File file = new File(filePath);
 	    ReadabilityCalculator.Stats stats = ReadabilityCalculator.analyze(file);
@@ -183,27 +192,18 @@ final static String paths_2[] =
 	    	out.append("NA").append(",");
 	    else
 		    out.append(syllables/words).append(",");
-	    
-	    
-	    
+
 	    
 	    out.append(getCS7IS4wordCount(text)).append(",");
 	    out.append(getCS7IS4sentenceCount(text)).append("\n");
-	    
-	    String resultPath = "C:\\Users\\Swastik\\Desktop\\MastersDegree_CS\\Semester_2\\TextAnalytics\\Project\\_results\\";
-	    BufferedWriter writer = new BufferedWriter(
-	  		  new FileWriter(resultPath +  "results.csv"));
-	    writer.append(out);
-	    writer.close();
-		
 	}
     
-    private Object getCS7IS4wordCount(String text) {
+    private int getCS7IS4wordCount(String text) {
     	return text.split(" ").length;
 	}
 
-	private Object getCS7IS4sentenceCount(String text) {
-		return text.split(".").length;
+	private int getCS7IS4sentenceCount(String text) {
+		return text.replace(".", "_!_").split("_!_").length;
 	}
 
 	private String readFile(File file) throws Exception
@@ -216,9 +216,8 @@ final static String paths_2[] =
         return text.toString();
     }
 
-	private void writeHeader() throws Exception {
+	private void writeHeader(StringBuilder out) throws Exception {
 		
-		    StringBuilder out = new StringBuilder();
 		    out.append("Country").append(",");
 		    out.append("Grade").append(",");
 		    out.append("Subject").append(",");
@@ -250,13 +249,8 @@ final static String paths_2[] =
 		    
 		    out.append("CS7IS4_WORD_COUNT").append(",");
 		    out.append("CS7IS4_SENTENCE_COUNT").append("\n");
-		    String resultPath = "C:\\Users\\Swastik\\Desktop\\MastersDegree_CS\\Semester_2\\TextAnalytics\\Project\\_results\\";
-		    BufferedWriter writer = new BufferedWriter(
-		  		  new FileWriter(resultPath +  "results.csv"));
-		    writer.write(out.toString());
-		    writer.close();
-				
 	}
+	
 	private String getGrade(String filePath) {
 		int i = filePath.indexOf("TextBooks");
 		i = filePath.indexOf("\\", i);
