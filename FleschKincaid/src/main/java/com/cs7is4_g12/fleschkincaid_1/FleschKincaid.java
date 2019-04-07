@@ -77,4 +77,16 @@ public class FleschKincaid {
         this.sentenceLexer = sentenceLexer;
     }
 
+	public int getNumWords(String text) {
+        final List<Sentence> sentences = filterInvalidSentences(this.sentenceLexer.tokenize(text));
+        return countWords(sentences);
+	}
+	public int getNumSentences(String text) {
+        return filterInvalidSentences(this.sentenceLexer.tokenize(text)).size();
+	}
+	public int getNumSyllables(String text) {
+        final List<Sentence> sentences = filterInvalidSentences(this.sentenceLexer.tokenize(text));
+        return countSyllables(sentences);
+	}
+
 }
