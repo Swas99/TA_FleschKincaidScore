@@ -1,4 +1,5 @@
 NLP PROJECT: Calculates content word(Adj, Noun, Verb, Advb) count; Lexical diversity through MLTD index score; and  Content Diversity
+<br>
 Flesch Kincaid PROJECT: Calculates FK/Readability Score 
 ![](_results/results.csv)
 
