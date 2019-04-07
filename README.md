@@ -1,6 +1,6 @@
 NLP PROJECT: Calculates content word(Adj, Noun, Verb, Advb) count; Lexical diversity through MLTD index score; and  Content Diversity
 Flesch Kincaid PROJECT: Calculates FK/Readability Score 
-
+![](_results/results.csv)
 
 To run Flesch Kincaid PROJECT: 
 1. Download/Clone the project
@@ -60,6 +60,7 @@ http://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests
 
 Results Of FLesch Kinkaid Exp:
 ```
+![](_results/results.csv)
 C:\USERS\SWASTIK\DESKTOP\MASTERSDEGREE_CS\SEMESTER_2\TEXTANALYTICS\PROJECT\US TEXTBOOKS\10\10TH_FULL.TXT
 FleschKincaid Implementation 1:
 --------------------------------------------------------------
