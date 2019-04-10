@@ -4,8 +4,9 @@ Flesch Kincaid PROJECT: Calculates FK/Readability Score
 <br>
 
 <h2>Results of Flesch Kincaid Experiment</h2>
+
 | Country | Grade | Subject       | FK_1_FK_SCORE | FK_2_FK_SCORE | FK_3_FK_SCORE |
-| ------- | ----- | ------------- | ------------- | ------------- | ------------- |
+ ----|----|----|----|----|----| 
 | IN      | 1     | English       | 78.7564       | 78.6004938    | 85.6429158    |
 | IN      | 2     | English       | 78.75034      | 79.16481397   | 87.25040766   |
 | IN      | 3     | English       | 81.13185      | 80.12721863   | 87.4707646    |
