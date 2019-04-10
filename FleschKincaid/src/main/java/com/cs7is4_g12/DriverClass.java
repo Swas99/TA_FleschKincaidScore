@@ -171,11 +171,11 @@ final static String paths_2[] =
 	    if(sentences==0)
 	    	out.append("NA").append(",");
 	    else
-	    	out.append(words/sentences).append(",");
+	    	out.append((float)words/sentences).append(",");
 	    if(words==0)
 	    	out.append("NA").append(",");
 	    else
-		    out.append(syllables/words).append(",");
+		    out.append((float)syllables/words).append(",");
 	    
 
 	    words =  objFleschKincaidWithStanfordNLPLexer.getNumWords(text);
@@ -187,11 +187,11 @@ final static String paths_2[] =
 	    if(sentences==0)
 	    	out.append("NA").append(",");
 	    else
-	    	out.append(words/sentences).append(",");
+	    	out.append((float)words/sentences).append(",");
 	    if(words==0)
 	    	out.append("NA").append(",");
 	    else
-		    out.append(syllables/words).append(",");
+		    out.append((float)syllables/words).append(",");
 
 	    
 	    out.append(getCS7IS4wordCount(text)).append(",");
